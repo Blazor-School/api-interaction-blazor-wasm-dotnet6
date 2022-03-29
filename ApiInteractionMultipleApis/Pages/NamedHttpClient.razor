@@ -2,27 +2,7 @@
 @inject IHttpClientFactory HttpClientFactory
 
 <h3>NamedHttpClient</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var forecast in WeatherData)
-        {
-            <tr>
-                <td>@forecast.Date.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
-                <td>@forecast.TemperatureF</td>
-                <td>@forecast.Summary</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<WeatherForecastDisplay WeatherData="WeatherData"/>
 
 @code {
     List<WeatherForecast> WeatherData { get; set; } = new();

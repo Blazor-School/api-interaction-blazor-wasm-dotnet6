@@ -1,0 +1,15 @@
+﻿@page "/interfere-with-http-client-wrapper"
+@using ApiInteractionMultipleApis.Utilities
+@inject InterfereByHttpClientWrapper HttpClientWrapper
+
+<h3>InterfereWithHttpClientWrapper</h3>
+<BookListDisplay Books="Books"/>
+
+@code {
+    List<BookDetail> Books { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Books = await HttpClientWrapper.GetAsync<List<BookDetail>>("BookDetail") ?? new();
+    }
+}

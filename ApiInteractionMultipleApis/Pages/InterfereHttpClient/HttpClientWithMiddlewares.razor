@@ -1,0 +1,15 @@
+﻿@page "/http-client-with-middlewares"
+@inject IHttpClientFactory HttpClientFactory
+
+<h3>HttpClientWithMiddlewares</h3>
+<BookListDisplay Books="Books"/>
+
+@code {
+    List<BookDetail> Books { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("HttpClient with Middlewares");
+        Books = await httpClient.GetFromJsonAsync<List<BookDetail>>("BookDetail") ?? new();
+    }
+}
