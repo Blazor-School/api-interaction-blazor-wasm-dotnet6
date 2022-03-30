@@ -5,13 +5,6 @@ namespace SecondApi.Controllers;
 [Route("[controller]")]
 public class BookDetailController : ControllerBase
 {
-    private readonly ILogger<BookDetailController> _logger;
-
-    public BookDetailController(ILogger<BookDetailController> logger)
-    {
-        _logger = logger;
-    }
-
     [HttpGet]
     public IEnumerable<BookDetail> Get()
     {

@@ -10,6 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped<CustomHttpClient>();
 
 builder.Services.AddHttpClient("First API", httpClient => httpClient.BaseAddress = new("http://localhost:5165"));
+builder.Services.AddHttpClient("Second API", httpClient => httpClient.BaseAddress = new("http://localhost:5276"));
 
 builder.Services.AddHttpClient<SecondApiHttpClientWrapper>(httpClient => httpClient.BaseAddress = new("http://localhost:5276"));
 
@@ -20,5 +21,7 @@ builder.Services.AddHttpClient("HttpClient with Middlewares", httpClient => http
        .AddHttpMessageHandler<SecondMiddleware>();
 
 builder.Services.AddHttpClient<InterfereByHttpClientWrapper>(httpClient => httpClient.BaseAddress = new("http://localhost:5276"));
+
+builder.Services.AddHttpClient("InterfereWithHttpClientExtension", httpClient => httpClient.BaseAddress = new("http://localhost:5165"));
 
 await builder.Build().RunAsync();

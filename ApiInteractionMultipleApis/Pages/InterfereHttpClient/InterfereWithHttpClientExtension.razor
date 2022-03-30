@@ -1,0 +1,17 @@
+﻿@page "/interfere-with-http-client-extension"
+@using ApiInteractionMultipleApis.Utilities
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime JsRuntime
+
+<h3>InterfereWithHttpClientExtension</h3>
+<WeatherForecastDisplay WeatherData="WeatherData" />
+
+@code {
+    List<WeatherForecast> WeatherData { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("InterfereWithHttpClientExtension");
+        WeatherData = await httpClient.GetResponse<List<WeatherForecast>>("WeatherForecast", JsRuntime) ?? new();
+    }
+}
