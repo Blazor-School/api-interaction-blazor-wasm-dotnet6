@@ -14,4 +14,10 @@ public class ExampleController : ControllerBase
 
     [HttpPost("[action]")]
     public void ProcessStreamdata([FromForm] ExampleStreamClass streamModel) => Console.WriteLine($"Stream received with length: {streamModel.FileStream.Length}");
+
+    [HttpGet("[action]")]
+    public IActionResult ReturnPrimitiveData() => Ok("Blazor School");
+
+    [HttpGet("[action]")]
+    public IActionResult ReturnComplexData() => Ok(new ExampleClass { ExampleString = "Blazor School" });
 }
