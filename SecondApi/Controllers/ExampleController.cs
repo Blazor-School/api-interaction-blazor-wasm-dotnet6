@@ -6,6 +6,9 @@ namespace SecondApi.Controllers;
 [Route("[controller]")]
 public class ExampleController : ControllerBase
 {
+    [HttpGet("[action]")]
+    public void ProcessPrimitiveUrlData(string data) => Console.WriteLine($"Data received: {data}.");
+
     [HttpPost("[action]")]
     public void ProcessComplexData([FromBody] ExampleClass data) => Console.WriteLine($"Data received: {JsonConvert.SerializeObject(data)}.");
 
@@ -22,5 +25,5 @@ public class ExampleController : ControllerBase
     public IActionResult ReturnComplexData() => Ok(new ExampleClass { ExampleString = "Blazor School" });
 
     [HttpGet("[action]")]
-    public void ProcessPrimitiveUrlData(string data) => Console.WriteLine($"Data received: {data}.");
+    public IActionResult ReturnStreamData() => Ok(new FileStream($"{Environment.CurrentDirectory}/SampleFile/logo.png", FileMode.Open));
 }
