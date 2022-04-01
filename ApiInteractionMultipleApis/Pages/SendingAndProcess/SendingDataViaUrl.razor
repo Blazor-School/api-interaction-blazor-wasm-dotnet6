@@ -1,8 +1,7 @@
-﻿@page "/sending-complex-data"
-@using ApiInteractionMultipleApis.Models
+﻿@page "/sending-data-via-url"
 @inject IHttpClientFactory HttpClientFactory
 
-<h3>SendingComplexData</h3>
+<h3>SendingDataViaUrl</h3>
 <div>@Status</div>
 
 @code {
@@ -11,11 +10,7 @@
     protected override async Task OnInitializedAsync()
     {
         var httpClient = HttpClientFactory.CreateClient("Second API");
-        var data = new ExampleClass()
-        {
-            ExampleString = "Blazor School"
-        };
-        var message = await httpClient.PostAsJsonAsync<ExampleClass>("example/ProcessComplexData", data);
+        var message = await httpClient.GetAsync($"example/ProcessPrimitiveUrlData?data=Blazor School");
 
         if (message is not null && message.IsSuccessStatusCode)
         {

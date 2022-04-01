@@ -20,4 +20,7 @@ public class ExampleController : ControllerBase
 
     [HttpGet("[action]")]
     public IActionResult ReturnComplexData() => Ok(new ExampleClass { ExampleString = "Blazor School" });
+
+    [HttpGet("[action]")]
+    public void ProcessPrimitiveUrlData(string data) => Console.WriteLine($"Data received: {data}.");
 }
